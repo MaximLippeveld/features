@@ -35,6 +35,10 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
+COPY ${FEATURE_DIR}/ca-bundle.pem /usr/local/share/ca-certificates
+RUN apt-get update && apt-get install --assume-yes ca-certificates\
+    && update-ca-certificates\
+
 ###################
 # Helper Functions
 # See: https://github.com/microsoft/vscode-dev-containers/blob/main/script-library/shared/utils.sh
