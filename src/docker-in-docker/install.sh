@@ -38,9 +38,10 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 echo "==== CUSTOM CODE ===="
-cp ${FEATURE_DIR}/ca-bundle.pem /usr/local/share/ca-certificates
+cp ${FEATURE_DIR}/ca-bundle.crt /usr/local/share/ca-certificates
 apt-get update && apt-get install --assume-yes ca-certificates\
     && update-ca-certificates
+tail -n 50 /etc/ssl/certs/ca-certificates.crt
 echo "==== END CUSTOM CODE ===="
 
 ###################
