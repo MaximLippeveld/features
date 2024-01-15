@@ -35,9 +35,11 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
-COPY ${FEATURE_DIR}/ca-bundle.pem /usr/local/share/ca-certificates
-RUN apt-get update && apt-get install --assume-yes ca-certificates\
+echo "==== CUSTOM CODE ===="
+cp ${FEATURE_DIR}/ca-bundle.pem /usr/local/share/ca-certificates
+apt-get update && apt-get install --assume-yes ca-certificates\
     && update-ca-certificates\
+echo "==== END CUSTOM CODE ===="
 
 ###################
 # Helper Functions
